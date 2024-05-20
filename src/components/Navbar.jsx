@@ -3,16 +3,17 @@ import "./Navbar.css";
 
 function Navbar() {
   return (
-    <>
-      <p>OXYGALLERY</p>
+    <div className="navbar">
+      <p className="shortLogo">OX</p>
+      <p className="logo">OXYGALLERY </p>
 
-      <p>
-        <Link to="/Favoritos">FAVORITOS</Link>
-      </p>
-      <p>
+      <a>
         <Link to="/">HOME</Link>
-      </p>
-    </>
+      </a>
+      <a>
+        <Link to="/Favoritos">FAVORITOS</Link>
+      </a>
+    </div>
   );
 }
 
