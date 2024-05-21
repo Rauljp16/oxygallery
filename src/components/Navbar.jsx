@@ -7,12 +7,14 @@ function Navbar() {
       <p className="shortLogo">OX</p>
       <p className="logo">OXYGALLERY </p>
 
-      <a>
-        <Link to="/">HOME</Link>
-      </a>
-      <a>
-        <Link to="/Favoritos">FAVORITOS</Link>
-      </a>
+      <div className="linkNavbar">
+        <p>
+          <Link to="/">HOME</Link>
+        </p>
+        <p>
+          <Link to="/Favorite">FAVORITOS</Link>
+        </p>
+      </div>
     </div>
   );
 }

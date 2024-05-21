@@ -1,27 +1,35 @@
-@import url("https://fonts.googleapis.com/css2?family=Kolker+Brush&family=Margarine&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Margarine&display=swap");
 .navbar {
   height: 4em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: burlywood;
   color: aliceblue;
-  font-family: "margarite", cursive;
+  font-family: "Margarine", sans-serif;
+  padding: 0 0.5em;
 }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
   color: inherit;
   font-size: 0.8em;
 }
 .logo {
+  margin: 0;
   font-size: 1.5em;
   display: none;
 }
 .shortLogo {
+  margin: 0;
   font-size: 2.5em;
   font-weight: 600;
   color: rgba(68, 109, 97, 1);
-  filter: drop-shadow(0 1px 1px rgba(34, 223, 195, 0.8));
+  text-shadow: 0.5px 0.5px 0px rgba(34, 223, 195, 1),
+    -0.5px -0.5px 0px rgba(34, 223, 195, 1),
+    -0.5px 0.5px 0px rgba(34, 223, 195, 1),
+    0.5px -0.5px 0px rgba(34, 223, 195, 1);
+}
+.linkNavbar {
+  display: flex;
+  gap: 1em;
 }

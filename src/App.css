@@ -1,4 +1,9 @@
 body {
-  margin: 0 auto;
+  margin: 0;
+}
+#root {
+  /* margin: 0 auto; */
   padding: 0 0.6rem;
+  height: 100vh;
+  background-color: rgb(33, 33, 33);
 }
