@@ -1,3 +1,4 @@
+import "./ImagesComponent.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchImagesThunk } from "../../features/imagesApi/imagesThunk";
@@ -29,12 +30,12 @@ function ImagesComponent() {
       {loading ? (
         <p style={{ color: "white" }}>LOADING</p>
       ) : (
-        <div style={{ color: "white" }}>
+        <div className="containerImages">
           {images.map((image) => (
             <img
-              style={{ width: "10em" }}
+              className="containerImages__img"
               key={image.id}
-              src={image.urls.regular}
+              src={image.urls.small}
               alt={`Image ${image.id}`}
             />
           ))}

@@ -7,7 +7,6 @@ function Search() {
 
   const handleChange = (event) => {
     setOrder(event.target.value);
-    console.log(order);
   };
 
   return (

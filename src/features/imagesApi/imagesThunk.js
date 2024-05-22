@@ -5,7 +5,7 @@ export const fetchImagesThunk = createAsyncThunk(
   async () => {
     try {
       const request = await fetch(
-        "https://api.unsplash.com/photos/?client_id=XUBEXwPvxdsawwBpkrcAKse24qbJ_Uhew2eTetc3OWo#"
+        "https://api.unsplash.com/photos/random?count=20&client_id=XUBEXwPvxdsawwBpkrcAKse24qbJ_Uhew2eTetc3OWo#"
       );
       if (request.ok) {
         const data = await request.json();
