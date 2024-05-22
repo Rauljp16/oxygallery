@@ -1,5 +1,5 @@
-import Search from "./Search";
-import Tags from "./Tags";
+import Search from "../components/search/Search";
+import Tags from "../components/tags/Tags";
 
 function Favorite() {
   return (

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Search.css";
-import searchSvg from "../svg/search.svg";
+import searchSvg from "../../svg/search.svg";
 
 function Search() {
   const [order, setOrder] = useState("");
