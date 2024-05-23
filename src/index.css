@@ -2,8 +2,7 @@ body {
   margin: 0;
 }
 #root {
-  /* margin: 0 auto; */
-  height: 100%;
+  margin: 0 auto;
   padding: 0 0.8rem;
   background-color: rgb(33, 33, 33);
 }
