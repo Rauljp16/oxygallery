@@ -1,3 +1,4 @@
+import ImagesComponent from "../components/imagesComponents/ImagesComponent";
 import Search from "../components/search/Search";
 import Tags from "../components/tags/Tags";
 
@@ -6,6 +7,7 @@ function Home() {
     <div>
       <Search />
       <Tags />
+      <ImagesComponent />
     </div>
   );
 }

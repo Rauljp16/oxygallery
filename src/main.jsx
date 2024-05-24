@@ -4,7 +4,7 @@ import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./app/store.js";
-import LayoutComponent from "./components/LayoutComponent.jsx";
+import LayoutComponent from "./components/layoutComponents/LayoutComponent.jsx";
 import Home from "./pages/Home.jsx";
 import Favorite from "./pages/Favorite.jsx";
 

@@ -8,7 +8,7 @@ import heartFavSvg from "../../svg/heartFav.svg";
 function ImagesComponent() {
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
-  const [favoriteImages, setFavoriteImages] = useState({});
+  const [favoriteImages, setFavoriteImages] = useState([]);
   const dispatch = useDispatch();
   const imagesStatus = useSelector((state) => state.image.status);
   const imagesData = useSelector((state) => state.image.data);
@@ -18,22 +18,36 @@ function ImagesComponent() {
     if (imagesStatus === "idle") {
       dispatch(fetchImagesThunk());
     } else if (imagesStatus === "fulfilled") {
+      const storedFavorites =
+        JSON.parse(localStorage.getItem("favoriteImages")) || [];
+      setFavoriteImages(storedFavorites);
       setImages(imagesData);
       setLoading(false);
     } else if (imagesStatus === "rejected") {
       setLoading(false);
-      alert("error imagesData");
+      alert("Error loading images data");
       alert(imagesError);
     }
   }, [imagesStatus, dispatch, imagesData, imagesError]);
 
-  const toggleFavorite = (imageId) => {
-    setFavoriteImages((prevFavorites) => ({
-      ...prevFavorites,
-      [imageId]: !prevFavorites[imageId],
-    }));
+  const toggleFavorite = (image) => {
+    const isFavorite = favoriteImages.some(
+      (favImage) => favImage.id === image.id
+    );
+    let updatedFavorites;
+
+    if (isFavorite) {
+      updatedFavorites = favoriteImages.filter(
+        (favImage) => favImage.id !== image.id
+      );
+    } else {
+      updatedFavorites = [...favoriteImages, image];
+    }
+
+    setFavoriteImages(updatedFavorites);
+    localStorage.setItem("favoriteImages", JSON.stringify(updatedFavorites));
   };
-  console.log(favoriteImages);
+
   return (
     <>
       {loading ? (
@@ -48,10 +62,14 @@ function ImagesComponent() {
                 alt={`Image ${image.id}`}
               />
               <img
-                src={favoriteImages[image.id] ? heartFavSvg : heartSvg}
+                src={
+                  favoriteImages.some((favImage) => favImage.id === image.id)
+                    ? heartFavSvg
+                    : heartSvg
+                }
                 className="heartSvg"
                 alt="heart icon"
-                onClick={() => toggleFavorite(image.id)}
+                onClick={() => toggleFavorite(image)}
               />
             </div>
           ))}
