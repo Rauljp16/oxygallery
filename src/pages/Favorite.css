@@ -9,11 +9,6 @@
   gap: 1em;
   justify-content: center;
 }
-.images {
-  width: 18em;
-  border: 1px solid rgba(243, 243, 243, 0.3);
-  border-radius: 0.5em;
-}
 .alert {
   color: rgba(243, 243, 243, 1);
   font-family: "Margarine", sans-serif;
@@ -25,16 +20,36 @@
 }
 .iconsSvg {
   position: relative;
-  display: flex;
-  bottom: 3.5em;
-  justify-content: space-around;
+  margin: auto;
+  width: fit-content;
+  bottom: 3em;
+  height: 2.5em;
+}
+.download {
+  height: 100%;
+}
+.edit {
+  height: 100%;
+}
+.delete {
+  height: 100%;
+}
+
+.download:hover {
+  scale: 1.2;
+  filter: drop-shadow(0 0 3px rgb(1, 155, 27));
+}
+.edit:hover {
+  scale: 1.2;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 1));
+}
+.delete:hover {
+  scale: 1.2;
+  filter: drop-shadow(0 0 5px rgba(253, 0, 0, 0.788));
 }
 
 @media (min-width: 1000px) {
   .favoriteImages {
     max-width: 70em;
-  }
-  .images {
-    width: 16em;
   }
 }

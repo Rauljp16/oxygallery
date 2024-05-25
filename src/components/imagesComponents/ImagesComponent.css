@@ -11,7 +11,7 @@
   position: relative;
 }
 .images {
-  width: 18em;
+  width: 17em;
   border: 1px solid rgba(243, 243, 243, 0.3);
   border-radius: 0.5em;
 }
@@ -22,11 +22,18 @@
   top: 0.6em;
   filter: drop-shadow(1px 1px 2px black);
 }
+.downloadImg {
+  position: relative;
+  right: 7em;
+  width: 6em;
+}
+.downloadImg:hover {
+  scale: 1.2;
+  filter: drop-shadow(0 0 3px rgb(1, 155, 27));
+}
+
 @media (min-width: 1000px) {
   .imagesApi {
     max-width: 70em;
-  }
-  .images {
-    width: 16em;
   }
 }

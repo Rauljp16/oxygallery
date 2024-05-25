@@ -3,8 +3,8 @@ import Search from "../components/search/Search";
 import Tags from "../components/tags/Tags";
 import "./Favorite.css";
 import downloadSvg from "../svg/download.svg";
-import editSvg from "../svg/delete.svg";
-import deleteSvg from "../svg/edit.svg";
+import deleteSvg from "../svg/delete.svg";
+import editSvg from "../svg/edit.svg";
 
 function Favorite() {
   const [favoriteImages, setFavoriteImages] = useState([]);

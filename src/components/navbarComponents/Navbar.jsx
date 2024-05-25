@@ -1,19 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
+  const location = useLocation();
   return (
     <div className="navbar">
       <p className="shortLogo">OX</p>
       <p className="logo">OXYGALLERY </p>
 
       <div className="linkNavbar">
-        <p>
-          <Link to="/">HOME</Link>
-        </p>
-        <p>
-          <Link to="/Favorite">FAVORITOS</Link>
-        </p>
+        {location.pathname === "/" ? (
+          <p>
+            <Link to="/Favorite">GO TO FAVORITE</Link>
+          </p>
+        ) : (
+          <p>
+            <Link to="/">GO TO HOME</Link>
+          </p>
+        )}
       </div>
     </div>
   );

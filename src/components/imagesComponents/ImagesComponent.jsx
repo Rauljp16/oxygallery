@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchImagesThunk } from "../../features/imagesApi/imagesThunk";
 import heartSvg from "../../svg/heart.svg";
 import heartFavSvg from "../../svg/heartFav.svg";
+import downloadSvg from "../../svg/download.svg";
 
 function ImagesComponent() {
   const [loading, setLoading] = useState(true);
@@ -71,6 +72,14 @@ function ImagesComponent() {
                 alt="heart icon"
                 onClick={() => toggleFavorite(image)}
               />
+              <section className="iconsSvg">
+                <img
+                  src={downloadSvg}
+                  className="downloadImg"
+                  alt="download Svg"
+                  // onClick={() => toggleFavorite(image)}
+                />
+              </section>
             </div>
           ))}
         </section>
