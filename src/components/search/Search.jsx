@@ -37,7 +37,7 @@ function Search() {
           onChange={handleInputChange}
           onKeyDown={handleEnter}
           className="searchInput"
-          placeholder="Buscar img"
+          placeholder="Search img"
         />
         <img src={searchSvg} className="searchButton" onClick={handleSearch} />
         <select
@@ -47,7 +47,7 @@ function Search() {
           label="Order"
           onChange={handleOrder}
         >
-          <option value="">filtrar por...</option>
+          <option value="">filter by...</option>
           <option value="width">width</option>
           <option value="height">height</option>
           <option value="likes">likes</option>

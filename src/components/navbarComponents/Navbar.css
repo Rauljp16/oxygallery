@@ -12,7 +12,7 @@
 a {
   text-decoration: underline;
   color: inherit;
-  font-size: 0.8em;
+  font-size: 0.9em;
 }
 .logo {
   margin: 0;
@@ -31,5 +31,9 @@ a {
 }
 .linkNavbar {
   display: flex;
-  margin-right: 2em;
+}
+@media (min-width: 1000px) {
+  .linkNavbar {
+    margin-right: 2em;
+  }
 }

@@ -14,6 +14,16 @@ function Favorite() {
       JSON.parse(localStorage.getItem("favoriteImages")) || [];
     setFavoriteImages(storedFavorites);
   }, []);
+
+  const toggleDelete = (imageDelete) => {
+    if (favoriteImages.some((favImage) => favImage.id === imageDelete.id)) {
+      const updatedFavorites = favoriteImages.filter(
+        (favImage) => favImage.id !== imageDelete.id
+      );
+      setFavoriteImages(updatedFavorites);
+      localStorage.setItem("favoriteImages", JSON.stringify(updatedFavorites));
+    }
+  };
   return (
     <div>
       <Search />
@@ -46,7 +56,7 @@ function Favorite() {
                   src={deleteSvg}
                   className="delete"
                   alt="delete Svg"
-                  // onClick={() => toggleFavorite(image)}
+                  onClick={() => toggleDelete(image)}
                 />
               </section>
             </div>
