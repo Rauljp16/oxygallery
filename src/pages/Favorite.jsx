@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import Search from "../components/search/Search";
 import Tags from "../components/tags/Tags";
 import "./Favorite.css";
+import downloadSvg from "../svg/download.svg";
+import editSvg from "../svg/delete.svg";
+import deleteSvg from "../svg/edit.svg";
 
 function Favorite() {
   const [favoriteImages, setFavoriteImages] = useState([]);
@@ -26,6 +29,26 @@ function Favorite() {
                 src={image.urls.small}
                 alt={`Favorite Image ${image.id}`}
               />
+              <section className="iconsSvg">
+                <img
+                  src={downloadSvg}
+                  className="download"
+                  alt="download Svg"
+                  // onClick={() => toggleFavorite(image)}
+                />
+                <img
+                  src={editSvg}
+                  className="edit"
+                  alt="download Svg"
+                  // onClick={() => toggleFavorite(image)}
+                />
+                <img
+                  src={deleteSvg}
+                  className="delete"
+                  alt="delete Svg"
+                  // onClick={() => toggleFavorite(image)}
+                />
+              </section>
             </div>
           ))
         )}
