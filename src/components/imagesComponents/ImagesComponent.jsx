@@ -2,6 +2,7 @@ import "./ImagesComponent.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchImagesThunk } from "../../features/imagesApi/imagesThunk";
+import { fetchSearchImgThunk } from "../../features/imagesApi/imagesThunk";
 import heartSvg from "../../svg/heart.svg";
 import heartFavSvg from "../../svg/heartFav.svg";
 import downloadSvg from "../../svg/download.svg";
@@ -10,6 +11,7 @@ function ImagesComponent() {
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
   const [favoriteImages, setFavoriteImages] = useState([]);
+  // const [searchText, setSearchText] = useState(true);
   const dispatch = useDispatch();
   const imagesStatus = useSelector((state) => state.image.status);
   const imagesData = useSelector((state) => state.image.data);
@@ -31,6 +33,24 @@ function ImagesComponent() {
     }
   }, [imagesStatus, dispatch, imagesData, imagesError]);
 
+  const searchStatus = useSelector((state) => state.search.status);
+  const searchData = useSelector((state) => state.search.data);
+  const searchError = useSelector((state) => state.search.error);
+
+  useEffect(() => {
+    if (searchStatus === "fulfilled") {
+      const storedFavorites =
+        JSON.parse(localStorage.getItem("favoriteImages")) || [];
+      setFavoriteImages(storedFavorites);
+      setImages(searchData);
+      setLoading(false);
+    } else if (searchStatus === "rejected") {
+      setLoading(false);
+      alert("Error loading images data");
+      alert(searchError);
+    }
+  }, [dispatch, searchData, searchError, searchStatus]);
+
   const toggleFavorite = (image) => {
     const isFavorite = favoriteImages.some(
       (favImage) => favImage.id === image.id
@@ -48,7 +68,6 @@ function ImagesComponent() {
     setFavoriteImages(updatedFavorites);
     localStorage.setItem("favoriteImages", JSON.stringify(updatedFavorites));
   };
-
   return (
     <>
       {loading ? (
@@ -59,7 +78,7 @@ function ImagesComponent() {
             <div key={image.id} className="container">
               <img
                 className="images"
-                src={image.urls.small}
+                src={image.urls.thumb}
                 alt={`Image ${image.id}`}
               />
               <img

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import "./Search.css";
 import searchSvg from "../../svg/search.svg";
+import { fetchSearchImgThunk } from "../../features/imagesApi/imagesThunk";
+import { fetchImagesThunk } from "../../features/imagesApi/imagesThunk";
 import { useDispatch } from "react-redux";
-import { addSearch } from "../../features/searchImg/searchImgSlice";
 
 function Search() {
   const [order, setOrder] = useState("");
-  const [filter, setFilter] = useState("");
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
 
@@ -19,10 +19,14 @@ function Search() {
   };
 
   const handleSearch = () => {
-    setFilter(inputValue);
-    dispatch(addSearch(filter));
-    setInputValue("");
+    if (inputValue.length > 0) {
+      dispatch(fetchSearchImgThunk(inputValue));
+    } else {
+      dispatch(fetchImagesThunk());
+      console.log("input vacio");
+    }
   };
+
   const handleEnter = (event) => {
     if (event.key === "Enter") {
       handleSearch();
