@@ -1,23 +1,27 @@
 import { useState } from "react";
 import "./Order.css";
+import { useDispatch } from "react-redux";
+import { setOrder } from "../../features/searchImg/searchImgSlice";
 
 function Order() {
-  const [order, setOrder] = useState("");
+  const [selectorValue, setSelectorValue] = useState("");
+  const dispatch = useDispatch();
 
   const handleOrder = (event) => {
-    setOrder(event.target.value);
+    const value = event.target.value;
+    setSelectorValue(event.target.value);
+    dispatch(setOrder(value));
   };
-
   return (
     <div className="containerOrder">
       <select
         id="select"
         className="searchSelect"
-        value={order}
+        value={selectorValue}
         label="Order"
         onChange={handleOrder}
       >
-        <option value="">filter by...</option>
+        <option value=".">Order by...</option>
         <option value="width">width</option>
         <option value="height">height</option>
         <option value="likes">likes</option>

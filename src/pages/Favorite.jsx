@@ -1,20 +1,30 @@
+// Favorite.jsx
 import { useEffect, useState } from "react";
-import Search from "../components/search/Search";
+import { useSelector } from "react-redux";
 import Tags from "../components/tags/Tags";
 import "./Favorite.css";
 import downloadSvg from "../svg/download.svg";
 import deleteSvg from "../svg/delete.svg";
 import editSvg from "../svg/edit.svg";
 import Order from "../components/order/Order";
+import searchSvg from "../svg/search.svg";
 
 function Favorite() {
   const [favoriteImages, setFavoriteImages] = useState([]);
+  const orderValue = useSelector((state) => state.search.order);
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     const storedFavorites =
       JSON.parse(localStorage.getItem("favoriteImages")) || [];
     setFavoriteImages(storedFavorites);
   }, []);
+
+  useEffect(() => {
+    if (orderValue) {
+      orderBy();
+    }
+  }, [orderValue]);
 
   const toggleDelete = (imageDelete) => {
     if (favoriteImages.some((favImage) => favImage.id === imageDelete.id)) {
@@ -28,15 +38,68 @@ function Favorite() {
 
   const orderBy = () => {
     let imagesCopy = [...favoriteImages];
-    const orderBy = imagesCopy.sort((a, b) => a.width - b.width);
-    setFavoriteImages(orderBy);
-    console.log(orderBy);
+    switch (orderValue) {
+      case "width":
+        imagesCopy.sort((a, b) => b.width - a.width);
+        break;
+      case "height":
+        imagesCopy.sort((a, b) => b.height - a.height);
+        break;
+      case "likes":
+        imagesCopy.sort((a, b) => b.likes - a.likes);
+        break;
+      default:
+        break;
+    }
+    setFavoriteImages(imagesCopy);
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSearch = () => {
+    const storedFavorites =
+      JSON.parse(localStorage.getItem("favoriteImages")) || [];
+    if (inputValue.length > 0) {
+      const filteredFavorites = storedFavorites.filter((image) =>
+        image.alt_description.toLowerCase().includes(inputValue.toLowerCase())
+      );
+      if (filteredFavorites.length === 0) {
+        alert("No hay coincidencias. Mostrando todas las imágenes favoritas.");
+        setFavoriteImages(storedFavorites);
+        setInputValue("");
+      } else {
+        setFavoriteImages(filteredFavorites);
+      }
+    } else {
+      setFavoriteImages(storedFavorites);
+    }
+  };
+
+  const handleEnter = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
   };
 
   return (
     <>
       <section className="containerFilters">
-        <Search className="searchFav" />
+        <input
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleEnter}
+          className="searchInput"
+          placeholder="  Search img"
+        />
+        <div className="containerButton">
+          <img
+            src={searchSvg}
+            className="searchButton"
+            onClick={handleSearch}
+          />
+        </div>
         <Order />
       </section>
       <Tags />
@@ -56,14 +119,9 @@ function Favorite() {
                   src={downloadSvg}
                   className="download"
                   alt="download Svg"
-                  onClick={() => orderBy()}
+                  onClick={() => console.log("Downloading...")}
                 />
-                <img
-                  src={editSvg}
-                  className="edit"
-                  alt="download Svg"
-                  // onClick={() => toggleFavorite(image)}
-                />
+                <img src={editSvg} className="edit" alt="edit Svg" />
                 <img
                   src={deleteSvg}
                   className="delete"

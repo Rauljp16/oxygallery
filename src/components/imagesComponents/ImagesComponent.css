@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Margarine&display=swap");
+
 .imagesApi {
   margin: 0 auto;
   max-width: 50em;
@@ -30,6 +32,50 @@
 .downloadImg:hover {
   scale: 1.2;
   filter: drop-shadow(0 0 3px rgb(1, 155, 27));
+}
+.popup {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  width: 100vw;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.021);
+  backdrop-filter: blur(1em);
+}
+.popup__close {
+  position: absolute;
+  right: 0em;
+  top: 0;
+  cursor: pointer;
+  margin: 0.2em;
+  z-index: 1;
+}
+.popup__Info {
+  position: relative;
+  width: 90%;
+  max-width: 40em;
+  height: 60%;
+  margin: 20% auto 0;
+}
+.popup__Img {
+  display: block;
+  width: 100%;
+  border-radius: 1em 1em 0 0;
+}
+.popup__dates {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(33, 33, 33);
+  width: 100%;
+  border-radius: 0 0 1em 1em;
+}
+.popup__dates__p {
+  color: aliceblue;
+  font-family: "Margarine", sans-serif;
+  margin-left: 1em;
+  font-size: small;
 }
 
 @media (min-width: 1000px) {

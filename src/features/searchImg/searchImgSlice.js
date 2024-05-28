@@ -7,9 +7,14 @@ export const searchImgSlice = createSlice({
     status: "idle",
     data: [],
     error: null,
+    order: "",
   },
 
-  reducers: {},
+  reducers: {
+    setOrder: (state, action) => {
+      state.order = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchSearchImgThunk.pending, (state, action) => {
@@ -25,3 +30,5 @@ export const searchImgSlice = createSlice({
       });
   },
 });
+export const { setOrder } = searchImgSlice.actions;
+export default searchImgSlice.reducer;
