@@ -5,6 +5,7 @@ import "./Favorite.css";
 import downloadSvg from "../svg/download.svg";
 import deleteSvg from "../svg/delete.svg";
 import editSvg from "../svg/edit.svg";
+import Order from "../components/order/Order";
 
 function Favorite() {
   const [favoriteImages, setFavoriteImages] = useState([]);
@@ -24,9 +25,20 @@ function Favorite() {
       localStorage.setItem("favoriteImages", JSON.stringify(updatedFavorites));
     }
   };
+
+  const orderBy = () => {
+    let imagesCopy = [...favoriteImages];
+    const orderBy = imagesCopy.sort((a, b) => a.width - b.width);
+    setFavoriteImages(orderBy);
+    console.log(orderBy);
+  };
+
   return (
-    <div>
-      <Search />
+    <>
+      <section className="containerFilters">
+        <Search className="searchFav" />
+        <Order />
+      </section>
       <Tags />
       <section className="favoriteImages">
         {favoriteImages.length === 0 ? (
@@ -44,7 +56,7 @@ function Favorite() {
                   src={downloadSvg}
                   className="download"
                   alt="download Svg"
-                  // onClick={() => toggleFavorite(image)}
+                  onClick={() => orderBy()}
                 />
                 <img
                   src={editSvg}
@@ -63,7 +75,7 @@ function Favorite() {
           ))
         )}
       </section>
-    </div>
+    </>
   );
 }
 

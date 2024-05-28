@@ -1,5 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Margarine&display=swap");
 
+.containerFilters {
+  display: flex;
+  background-color: #ffffff35;
+  height: 2.6em;
+  border-radius: 1em;
+  padding: 0.7em;
+  margin: 0 auto;
+  max-width: 30em;
+  justify-content: space-between;
+}
+
 .favoriteImages {
   margin: 0 auto;
   max-width: 50em;

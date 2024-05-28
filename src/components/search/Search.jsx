@@ -6,13 +6,8 @@ import { fetchImagesThunk } from "../../features/imagesApi/imagesThunk";
 import { useDispatch } from "react-redux";
 
 function Search() {
-  const [order, setOrder] = useState("");
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
-
-  const handleOrder = (event) => {
-    setOrder(event.target.value);
-  };
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -23,7 +18,6 @@ function Search() {
       dispatch(fetchSearchImgThunk(inputValue));
     } else {
       dispatch(fetchImagesThunk());
-      console.log("input vacio");
     }
   };
 
@@ -41,21 +35,15 @@ function Search() {
           onChange={handleInputChange}
           onKeyDown={handleEnter}
           className="searchInput"
-          placeholder="Search img"
+          placeholder="  Search img"
         />
-        <img src={searchSvg} className="searchButton" onClick={handleSearch} />
-        <select
-          id="select"
-          className="searchSelect"
-          value={order}
-          label="Order"
-          onChange={handleOrder}
-        >
-          <option value="">filter by...</option>
-          <option value="width">width</option>
-          <option value="height">height</option>
-          <option value="likes">likes</option>
-        </select>
+        <div className="containerButton">
+          <img
+            src={searchSvg}
+            className="searchButton"
+            onClick={handleSearch}
+          />
+        </div>
       </section>
     </>
   );

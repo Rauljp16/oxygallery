@@ -2,7 +2,6 @@ import "./ImagesComponent.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchImagesThunk } from "../../features/imagesApi/imagesThunk";
-import { fetchSearchImgThunk } from "../../features/imagesApi/imagesThunk";
 import heartSvg from "../../svg/heart.svg";
 import heartFavSvg from "../../svg/heartFav.svg";
 import downloadSvg from "../../svg/download.svg";
@@ -11,7 +10,6 @@ function ImagesComponent() {
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
   const [favoriteImages, setFavoriteImages] = useState([]);
-  // const [searchText, setSearchText] = useState(true);
   const dispatch = useDispatch();
   const imagesStatus = useSelector((state) => state.image.status);
   const imagesData = useSelector((state) => state.image.data);
@@ -68,6 +66,7 @@ function ImagesComponent() {
     setFavoriteImages(updatedFavorites);
     localStorage.setItem("favoriteImages", JSON.stringify(updatedFavorites));
   };
+
   return (
     <>
       {loading ? (

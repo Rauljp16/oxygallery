@@ -1,48 +1,30 @@
 .search {
-  position: relative;
   display: flex;
-  justify-content: space-between;
-  background-color: #ffffff35;
   height: 2.6em;
   border-radius: 1em;
-  padding: 0.7em;
-  margin: 0.5em auto 0;
   max-width: 30em;
+  justify-content: center;
+}
+.containerButton {
+  display: flex;
+  background-color: rgb(33, 33, 33);
+  border-radius: 1em;
 }
 .searchButton {
-  position: absolute;
   width: 2.2em;
-  right: 42%;
-  top: 0.9em;
   cursor: pointer;
+  padding: 0 0.6em;
 }
 .searchInput {
   background-color: rgb(33, 33, 33);
   border-radius: 1em;
   border: none;
-  width: 61%;
   outline: none;
   color: rgba(243, 243, 243, 1);
   font-size: medium;
+  margin: 0 5%;
+  width: 10em;
 }
 .searchInput:focus {
   box-shadow: 0 0 7px rgba(243, 243, 243, 1);
-}
-.searchSelect {
-  background-color: rgb(33, 33, 33);
-  color: rgba(243, 243, 243, 1);
-  border-radius: 1em;
-  width: 35%;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  outline: none;
-}
-.searchSelect:focus {
-  box-shadow: 0 0 7px rgba(243, 243, 243, 1);
-}
-.searchSelect option {
-  background-color: #ffffff20;
-  color: rgba(243, 243, 243, 1);
-  font-size: 16px;
 }

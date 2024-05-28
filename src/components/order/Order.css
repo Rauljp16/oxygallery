@@ -1,0 +1,24 @@
+.containerOrder {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.searchSelect {
+  background-color: rgb(107 107 107);
+  color: rgba(243, 243, 243, 1);
+  height: 100%;
+  border-radius: 1em;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  outline: none;
+  width: 70%;
+}
+.searchSelect:focus {
+  box-shadow: 0 0 7px rgba(243, 243, 243, 1);
+}
+.searchSelect option {
+  background-color: #ffffff20;
+  color: rgba(243, 243, 243, 1);
+  font-size: 16px;
+}
