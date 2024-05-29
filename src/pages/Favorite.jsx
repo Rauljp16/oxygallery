@@ -132,6 +132,29 @@ function Favorite() {
             </div>
           ))
         )}
+        {/* {isOpen && (
+          <section className="popup">
+            <div className="popup__Info">
+              <img
+                className="popup__Img"
+                src={imgPopup.urls.small}
+                alt={`Image ${imgPopup.id}`}
+              />
+              <img
+                src={close}
+                className="popup__close"
+                alt="close Svg"
+                onClick={() => toggleClose()}
+              />
+
+              <div className="popup__dates">
+                <p className="popup__dates__p">WIDTH: {imgPopup.width}</p>
+                <p className="popup__dates__p">HEIGHT: {imgPopup.height}</p>
+                <p className="popup__dates__p">LIKES: {imgPopup.likes}</p>
+              </div>
+            </div>
+          </section>
+        )} */}
       </section>
     </>
   );
