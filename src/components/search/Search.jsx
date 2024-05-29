@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Search.css";
 import searchSvg from "../../svg/search.svg";
+import crosSvg from "../../svg/cros.svg";
 import { fetchSearchImgThunk } from "../../features/imagesApi/imagesThunk";
 import { fetchImagesThunk } from "../../features/imagesApi/imagesThunk";
 import { useDispatch } from "react-redux";
@@ -16,6 +17,7 @@ function Search() {
   const handleSearch = () => {
     if (inputValue.length > 0) {
       dispatch(fetchSearchImgThunk(inputValue));
+      console.log(inputValue);
     } else {
       dispatch(fetchImagesThunk());
     }
@@ -26,6 +28,10 @@ function Search() {
       handleSearch();
     }
   };
+  const deleteInput = () => {
+    setInputValue("");
+    dispatch(fetchImagesThunk());
+  };
 
   return (
     <>
@@ -35,8 +41,12 @@ function Search() {
           onChange={handleInputChange}
           onKeyDown={handleEnter}
           className="searchInput"
-          placeholder="  Search img"
+          placeholder="  Search"
         />
+        <p className="deleteInput" onClick={deleteInput}>
+          Clear search
+        </p>
+
         <div className="containerButton">
           <img
             src={searchSvg}

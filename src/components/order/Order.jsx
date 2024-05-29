@@ -21,7 +21,7 @@ function Order() {
         label="Order"
         onChange={handleOrder}
       >
-        <option value=".">Order by...</option>
+        <option value="default">Order by...</option>
         <option value="width">width</option>
         <option value="height">height</option>
         <option value="likes">likes</option>

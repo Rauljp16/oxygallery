@@ -7,7 +7,7 @@ export const searchImgSlice = createSlice({
     status: "idle",
     data: [],
     error: null,
-    order: "",
+    order: "default",
   },
 
   reducers: {

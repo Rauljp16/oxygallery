@@ -8,15 +8,19 @@ import deleteSvg from "../svg/delete.svg";
 import editSvg from "../svg/edit.svg";
 import Order from "../components/order/Order";
 import searchSvg from "../svg/search.svg";
+import { useDispatch } from "react-redux";
+import { setOrder } from "../features/searchImg/searchImgSlice";
 
 function Favorite() {
   const [favoriteImages, setFavoriteImages] = useState([]);
   const orderValue = useSelector((state) => state.search.order);
   const [inputValue, setInputValue] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const storedFavorites =
       JSON.parse(localStorage.getItem("favoriteImages")) || [];
+    dispatch(setOrder("default"));
     setFavoriteImages(storedFavorites);
   }, []);
 
@@ -49,6 +53,7 @@ function Favorite() {
         imagesCopy.sort((a, b) => b.likes - a.likes);
         break;
       default:
+        imagesCopy = JSON.parse(localStorage.getItem("favoriteImages")) || [];
         break;
     }
     setFavoriteImages(imagesCopy);
@@ -82,6 +87,9 @@ function Favorite() {
       handleSearch();
     }
   };
+  const clear = () => {
+    setInputValue("");
+  };
 
   return (
     <>
@@ -91,8 +99,11 @@ function Favorite() {
           onChange={handleInputChange}
           onKeyDown={handleEnter}
           className="searchInput"
-          placeholder="  Search img"
+          placeholder="  Search"
         />
+        <p className="clear" onClick={clear}>
+          X
+        </p>
         <div className="containerButton">
           <img
             src={searchSvg}
