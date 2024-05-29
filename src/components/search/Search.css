@@ -3,7 +3,14 @@
   height: 2.6em;
   border-radius: 1em;
   max-width: 30em;
-  justify-content: center;
+  justify-content: space-between;
+}
+.containerSearch {
+  background-color: #ffffff35;
+  border-radius: 1em;
+  padding: 0.7em;
+  margin: 0 auto;
+  max-width: 30em;
 }
 .containerButton {
   display: flex;
@@ -22,8 +29,7 @@
   outline: none;
   color: rgba(243, 243, 243, 1);
   font-size: medium;
-  margin: 0 5%;
-  width: 10em;
+  width: 70%;
 }
 .searchInput:focus {
   box-shadow: 0 0 7px rgba(243, 243, 243, 1);

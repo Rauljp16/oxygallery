@@ -8,6 +8,7 @@
   padding: 0.7em;
   margin: 0 auto;
   max-width: 30em;
+  gap: 1em;
   justify-content: space-between;
 }
 

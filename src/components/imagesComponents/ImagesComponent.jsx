@@ -84,15 +84,12 @@ function ImagesComponent() {
       ) : (
         <section className="imagesApi">
           {images.map((image) => (
-            <div
-              key={image.id}
-              className="container"
-              onClick={() => togglePopup(image)}
-            >
+            <div key={image.id} className="container">
               <img
                 className="images"
                 src={image.urls.thumb}
                 alt={`Image ${image.id}`}
+                onClick={() => togglePopup(image)}
               />
               <img
                 src={
@@ -109,7 +106,7 @@ function ImagesComponent() {
                   src={downloadSvg}
                   className="downloadImg"
                   alt="download Svg"
-                  onClick={() => toggleFavorite(image)}
+                  // onClick={() => toggleFavorite(image)}
                 />
               </section>
             </div>

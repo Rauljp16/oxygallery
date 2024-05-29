@@ -66,7 +66,7 @@ function Favorite() {
         image.alt_description.toLowerCase().includes(inputValue.toLowerCase())
       );
       if (filteredFavorites.length === 0) {
-        alert("No hay coincidencias. Mostrando todas las imágenes favoritas.");
+        alert("No hay coincidencias.");
         setFavoriteImages(storedFavorites);
         setInputValue("");
       } else {
