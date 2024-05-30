@@ -161,7 +161,7 @@ function Favorite() {
             <div className="popup__Info">
               <img
                 className="popup__Img"
-                src={imgPopup.urls.small}
+                src={imgPopup.urls.regular}
                 alt={`Image ${imgPopup.id}`}
               />
               <img
@@ -178,7 +178,7 @@ function Favorite() {
                 <p className="popup__dates__p">
                   DATE ADDED: {imgPopup.addedAt}
                 </p>
-                <p className="popup__dates__description">
+                <p className="popup__dates__p popup__dates__description">
                   DESCRIPTION: {imgPopup.alt_description}
                 </p>
               </div>

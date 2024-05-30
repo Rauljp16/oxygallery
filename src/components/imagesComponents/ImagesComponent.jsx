@@ -124,7 +124,7 @@ function ImagesComponent() {
               <div className="popup__Info">
                 <img
                   className="popup__Img"
-                  src={imgPopup.urls.small}
+                  src={imgPopup.urls.regular}
                   alt={`Image ${imgPopup.id}`}
                 />
                 <img

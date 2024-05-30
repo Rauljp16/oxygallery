@@ -69,10 +69,10 @@
   cursor: pointer;
 }
 .popup {
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
-  top: 4em;
+  top: 0;
   width: 100vw;
   height: 100%;
   background: rgba(255, 255, 255, 0.021);
@@ -81,22 +81,24 @@
 .popup__close {
   position: absolute;
   cursor: pointer;
-  margin: 0.2em;
+  margin: 0.3em;
   width: 2em;
   height: 1.8em;
+  top: 1em;
+  right: 1em;
 }
 .popup__Info {
   display: flex;
   position: relative;
-  top: 0;
   flex-direction: column;
-  margin: 2em;
+  margin: auto 1em;
 }
 .popup__Img {
   display: block;
   max-width: 100%;
   max-height: 80vh;
   border-radius: 1em 1em 0 0;
+  margin: 1em 1em 0 1em;
 }
 .popup__dates {
   position: relative;
@@ -107,18 +109,16 @@
   border-radius: 0 0 1em 1em;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin: 0 1em;
 }
 .popup__dates__p {
   color: aliceblue;
   font-family: cursive;
   font-size: small;
-  letter-spacing: 2px;
+  margin: 0.2em 0;
 }
 .popup__dates__description {
-  color: aliceblue;
-  font-family: cursive;
-  font-size: small;
-  letter-spacing: 2px;
+  width: 180%;
 }
 
 @media (min-width: 1000px) {
