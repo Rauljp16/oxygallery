@@ -10,12 +10,15 @@ import Order from "../components/order/Order";
 import searchSvg from "../svg/search.svg";
 import { useDispatch } from "react-redux";
 import { setOrder } from "../features/searchImg/searchImgSlice";
+import close from "../svg/close.svg";
 
 function Favorite() {
   const [favoriteImages, setFavoriteImages] = useState([]);
   const orderValue = useSelector((state) => state.search.order);
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
+  const [imgPopup, setImgPopup] = useState({});
 
   useEffect(() => {
     const storedFavorites =
@@ -88,9 +91,18 @@ function Favorite() {
     }
   };
   const clear = () => {
-    setInputValue("");
+    if (inputValue != "") {
+      orderBy();
+      setInputValue("");
+    }
   };
-
+  const togglePopup = (image) => {
+    setImgPopup(image);
+    setIsOpen(true);
+  };
+  const toggleClose = () => {
+    setIsOpen(false);
+  };
   return (
     <>
       <section className="containerFilters">
@@ -124,6 +136,7 @@ function Favorite() {
                 className="images"
                 src={image.urls.small}
                 alt={`Favorite Image ${image.id}`}
+                onClick={() => togglePopup(image)}
               />
               <section className="iconsSvg">
                 <img
@@ -143,7 +156,7 @@ function Favorite() {
             </div>
           ))
         )}
-        {/* {isOpen && (
+        {isOpen && (
           <section className="popup">
             <div className="popup__Info">
               <img
@@ -162,10 +175,16 @@ function Favorite() {
                 <p className="popup__dates__p">WIDTH: {imgPopup.width}</p>
                 <p className="popup__dates__p">HEIGHT: {imgPopup.height}</p>
                 <p className="popup__dates__p">LIKES: {imgPopup.likes}</p>
+                <p className="popup__dates__p">
+                  DATE ADDED: {imgPopup.addedAt}
+                </p>
+                <p className="popup__dates__description">
+                  DESCRIPTION: {imgPopup.alt_description}
+                </p>
               </div>
             </div>
           </section>
-        )} */}
+        )}
       </section>
     </>
   );

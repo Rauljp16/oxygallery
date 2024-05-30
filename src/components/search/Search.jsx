@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./Search.css";
 import searchSvg from "../../svg/search.svg";
-import crosSvg from "../../svg/cros.svg";
 import { fetchSearchImgThunk } from "../../features/imagesApi/imagesThunk";
 import { fetchImagesThunk } from "../../features/imagesApi/imagesThunk";
 import { useDispatch } from "react-redux";
@@ -17,7 +16,6 @@ function Search() {
   const handleSearch = () => {
     if (inputValue.length > 0) {
       dispatch(fetchSearchImgThunk(inputValue));
-      console.log(inputValue);
     } else {
       dispatch(fetchImagesThunk());
     }

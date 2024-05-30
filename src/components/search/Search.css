@@ -38,8 +38,9 @@
 .deleteInput {
   position: absolute;
   right: 33%;
-  margin: 0.8em 0;
-  color: rgba(245, 95, 95, 0.685);
+  margin: 0.7em 0;
+  color: rgba(245, 95, 95, 0.425);
   font-family: sans-serif;
   font-size: initial;
+  cursor: pointer;
 }

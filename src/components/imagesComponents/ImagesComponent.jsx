@@ -62,7 +62,15 @@ function ImagesComponent() {
         (favImage) => favImage.id !== image.id
       );
     } else {
-      updatedFavorites = [...favoriteImages, image];
+      const date = new Date();
+      const formattedDate = `${date.getDate()}/${
+        date.getMonth() + 1
+      }/${date.getFullYear()}`;
+      const addDate = {
+        ...image,
+        addedAt: formattedDate,
+      };
+      updatedFavorites = [...favoriteImages, addDate];
     }
 
     setFavoriteImages(updatedFavorites);
