@@ -11,13 +11,15 @@ import searchSvg from "../svg/search.svg";
 import { useDispatch } from "react-redux";
 import { setOrder } from "../features/searchImg/searchImgSlice";
 import close from "../svg/close.svg";
+import FileSaver from "file-saver";
 
 function Favorite() {
   const [favoriteImages, setFavoriteImages] = useState([]);
   const orderValue = useSelector((state) => state.search.order);
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenPopup, setIsOpenPopup] = useState(false);
+  const [isOpenEditPopup, setIsOpenEditPopup] = useState(false);
   const [imgPopup, setImgPopup] = useState({});
 
   useEffect(() => {
@@ -98,10 +100,17 @@ function Favorite() {
   };
   const togglePopup = (image) => {
     setImgPopup(image);
-    setIsOpen(true);
+    setIsOpenPopup(true);
   };
   const toggleClose = () => {
-    setIsOpen(false);
+    setIsOpenPopup(false);
+    setIsOpenEditPopup(false);
+  };
+  const downloadImg = (image) => {
+    FileSaver.saveAs(image.urls.full, "Image.jpg");
+  };
+  const toggleEdit = () => {
+    setIsOpenEditPopup(true);
   };
   return (
     <>
@@ -143,9 +152,8 @@ function Favorite() {
                   src={downloadSvg}
                   className="download"
                   alt="download Svg"
-                  onClick={() => console.log("Downloading...")}
+                  onClick={() => downloadImg(image)}
                 />
-                <img src={editSvg} className="edit" alt="edit Svg" />
                 <img
                   src={deleteSvg}
                   className="delete"
@@ -156,7 +164,7 @@ function Favorite() {
             </div>
           ))
         )}
-        {isOpen && (
+        {isOpenPopup && (
           <section className="popup">
             <div className="popup__Info">
               <img
@@ -170,16 +178,41 @@ function Favorite() {
                 alt="close Svg"
                 onClick={() => toggleClose()}
               />
-
               <div className="popup__dates">
-                <p className="popup__dates__p">WIDTH: {imgPopup.width}</p>
-                <p className="popup__dates__p">HEIGHT: {imgPopup.height}</p>
-                <p className="popup__dates__p">LIKES: {imgPopup.likes}</p>
+                {isOpenEditPopup && (
+                  <section className="editPopup">
+                    <input
+                      type="text"
+                      className="editPopup__input"
+                      placeholder="Edit a new description"
+                    />
+                  </section>
+                )}
+
+                <div className="popup__dates__description">
+                  <p className="popup__dates__p">DESCRIPTION:</p>
+                  <p className="popup__dates__p"> {imgPopup.alt_description}</p>
+                </div>
+                <div></div>
+                <div className="popup__dates__edit">
+                  <img
+                    src={editSvg}
+                    className="edit"
+                    alt="edit Svg"
+                    onClick={() => toggleEdit()}
+                  />
+                </div>
                 <p className="popup__dates__p">
-                  DATE ADDED: {imgPopup.addedAt}
+                  WIDTH:&nbsp;&nbsp;{imgPopup.width}
                 </p>
-                <p className="popup__dates__p popup__dates__description">
-                  DESCRIPTION: {imgPopup.alt_description}
+                <p className="popup__dates__p">
+                  HEIGHT:&nbsp;&nbsp;{imgPopup.height}
+                </p>
+                <p className="popup__dates__p">
+                  LIKES:&nbsp;&nbsp;{imgPopup.likes}
+                </p>
+                <p className="popup__dates__p">
+                  DATE ADDED:&nbsp;&nbsp;{imgPopup.addedAt}
                 </p>
               </div>
             </div>
