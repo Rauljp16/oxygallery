@@ -6,6 +6,7 @@ import heartSvg from "../../svg/heart.svg";
 import heartFavSvg from "../../svg/heartFav.svg";
 import downloadSvg from "../../svg/download.svg";
 import close from "../../svg/close.svg";
+import FileSaver from "file-saver";
 
 function ImagesComponent() {
   const [loading, setLoading] = useState(true);
@@ -84,11 +85,14 @@ function ImagesComponent() {
   const toggleClose = () => {
     setIsOpen(false);
   };
+  const downloadImg = (image) => {
+    FileSaver.saveAs(image.urls.full, "Image.jpg");
+  };
 
   return (
     <>
       {loading ? (
-        <p style={{ color: "white" }}>LOADING</p>
+        <p className="alert">LOADING</p>
       ) : (
         <section className="imagesApi">
           {images.map((image) => (
@@ -114,7 +118,7 @@ function ImagesComponent() {
                   src={downloadSvg}
                   className="downloadImg"
                   alt="download Svg"
-                  // onClick={() => toggleFavorite(image)}
+                  onClick={() => downloadImg(image)}
                 />
               </section>
             </div>

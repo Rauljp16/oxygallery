@@ -5,7 +5,7 @@ import "./LayoutComponent.css";
 function LayoutComponent() {
   return (
     <>
-      <div className="container">
+      <div className="containerLayout">
         <Navbar />
         <Outlet />
       </div>
