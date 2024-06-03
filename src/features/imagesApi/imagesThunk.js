@@ -5,7 +5,7 @@ export const fetchImagesThunk = createAsyncThunk(
   async () => {
     try {
       const request = await fetch(
-        "https://api.unsplash.com/photos/random?count=20&client_id=XUBEXwPvxdsawwBpkrcAKse24qbJ_Uhew2eTetc3OWo#"
+        "https://api.unsplash.com/photos/random?count=30&client_id=XUBEXwPvxdsawwBpkrcAKse24qbJ_Uhew2eTetc3OWo#"
       );
       if (request.ok) {
         const data = await request.json();
@@ -23,7 +23,7 @@ export const fetchSearchImgThunk = createAsyncThunk(
   async (inputValue) => {
     try {
       const request = await fetch(
-        `https://api.unsplash.com/search/photos/?per_page=20&query=${inputValue}&client_id=XUBEXwPvxdsawwBpkrcAKse24qbJ_Uhew2eTetc3OWo#`
+        `https://api.unsplash.com/search/photos/?per_page=30&query=${inputValue}&client_id=XUBEXwPvxdsawwBpkrcAKse24qbJ_Uhew2eTetc3OWo#`
       );
       if (request.ok) {
         const data = await request.json();

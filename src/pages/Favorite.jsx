@@ -45,7 +45,7 @@ function Favorite() {
     localStorage.setItem("favoriteImages", JSON.stringify(updatedFavorites));
     toast.error("imagen eliminada de favoritos!", {
       position: "top-center",
-      autoClose: 1001,
+      autoClose: 2001,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
