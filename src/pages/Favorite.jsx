@@ -141,8 +141,10 @@ function Favorite() {
     });
   };
 
-  const toggleEdit = () => {
+  const toggleEdit = (image) => {
     setIsOpenEditPopup(true);
+    setIsOpenPopup(true);
+    setImgPopup(image);
   };
 
   const handleEditInput = (event) => {
@@ -217,6 +219,12 @@ function Favorite() {
                   onClick={() => downloadImg(image)}
                 />
                 <img
+                  src={editSvg}
+                  className="edit"
+                  alt="edit Svg"
+                  onClick={() => toggleEdit(image)}
+                />
+                <img
                   src={deleteSvg}
                   className="delete"
                   alt="delete Svg"
@@ -269,15 +277,8 @@ function Favorite() {
 
                 <div className="popup__dates__description">
                   <p className="popup__dates__p">DESCRIPTION:</p>
-                  <p className="popup__dates__p"> {imgPopup.alt_description}</p>
                 </div>
-                <div></div>
-                <img
-                  src={editSvg}
-                  className="edit"
-                  alt="edit Svg"
-                  onClick={() => toggleEdit()}
-                />
+                <p className="popup__dates__p"> {imgPopup.alt_description}</p>
                 <p className="popup__dates__p">
                   WIDTH:&nbsp;&nbsp;{imgPopup.width}
                 </p>

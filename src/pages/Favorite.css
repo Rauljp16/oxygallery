@@ -104,7 +104,7 @@
   max-width: 100%;
   border-radius: 0 0 1em 1em;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: start;
   margin: 0 1.2em;
   padding: 1em 1.3em;
   font-size: 0.8em;
@@ -113,9 +113,9 @@
   color: aliceblue;
   font-family: sans-serif;
   margin: 0.4em 0;
+  width: 120%;
 }
 .popup__dates__description {
-  width: 200%;
   margin-bottom: 0.6em;
 }
 .editPopup {
@@ -148,12 +148,14 @@
   cursor: pointer;
 }
 .edit {
-  position: absolute;
+  /* position: absolute;
   top: 0.6em;
   right: 1em;
   display: flex;
   align-items: center;
-  gap: 0.3em;
+  gap: 0.3em; */
+  height: 100%;
+  width: 1.5em;
 }
 .editPopup__close {
   position: absolute;
