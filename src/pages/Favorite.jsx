@@ -1,6 +1,6 @@
 // Favorite.jsx
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Tags from "../components/tags/Tags";
 import "./Favorite.css";
 import downloadSvg from "../svg/download.svg";
@@ -8,10 +8,11 @@ import deleteSvg from "../svg/delete.svg";
 import editSvg from "../svg/edit.svg";
 import Order from "../components/order/Order";
 import searchSvg from "../svg/search.svg";
-import { useDispatch } from "react-redux";
 import { setOrder } from "../features/searchImg/searchImgSlice";
 import close from "../svg/close.svg";
 import FileSaver from "file-saver";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Favorite() {
   const [favoriteImages, setFavoriteImages] = useState([]);
@@ -21,6 +22,7 @@ function Favorite() {
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [isOpenEditPopup, setIsOpenEditPopup] = useState(false);
   const [imgPopup, setImgPopup] = useState({});
+  const [editValue, setEditValue] = useState("");
 
   useEffect(() => {
     const storedFavorites =
@@ -36,13 +38,22 @@ function Favorite() {
   }, [orderValue]);
 
   const toggleDelete = (imageDelete) => {
-    if (favoriteImages.some((favImage) => favImage.id === imageDelete.id)) {
-      const updatedFavorites = favoriteImages.filter(
-        (favImage) => favImage.id !== imageDelete.id
-      );
-      setFavoriteImages(updatedFavorites);
-      localStorage.setItem("favoriteImages", JSON.stringify(updatedFavorites));
-    }
+    const updatedFavorites = favoriteImages.filter(
+      (favImage) => favImage.id !== imageDelete.id
+    );
+    setFavoriteImages(updatedFavorites);
+    localStorage.setItem("favoriteImages", JSON.stringify(updatedFavorites));
+    toast.error("imagen eliminada de favoritos!", {
+      position: "top-center",
+      autoClose: 1001,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      icon: false,
+    });
   };
 
   const orderBy = () => {
@@ -92,26 +103,77 @@ function Favorite() {
       handleSearch();
     }
   };
+
   const clear = () => {
-    if (inputValue != "") {
+    if (inputValue !== "") {
       orderBy();
       setInputValue("");
     }
   };
+
   const togglePopup = (image) => {
     setImgPopup(image);
     setIsOpenPopup(true);
+    setEditValue(image.alt_description);
   };
+
   const toggleClose = () => {
     setIsOpenPopup(false);
     setIsOpenEditPopup(false);
   };
+
+  const toggleCloseEdit = () => {
+    setIsOpenEditPopup(false);
+  };
+
   const downloadImg = (image) => {
     FileSaver.saveAs(image.urls.full, "Image.jpg");
+    toast.success("imagen descargada!", {
+      position: "top-center",
+      autoClose: 2001,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      icon: false,
+    });
   };
+
   const toggleEdit = () => {
     setIsOpenEditPopup(true);
   };
+
+  const handleEditInput = (event) => {
+    setEditValue(event.target.value);
+  };
+
+  const toggleEditValue = () => {
+    if (editValue.length > 0) {
+      const updatedImages = favoriteImages.map((image) => {
+        if (image.id === imgPopup.id) {
+          return { ...image, alt_description: editValue };
+        }
+        return image;
+      });
+
+      setFavoriteImages(updatedImages);
+      localStorage.setItem("favoriteImages", JSON.stringify(updatedImages));
+
+      setImgPopup({ ...imgPopup, alt_description: editValue });
+
+      setEditValue("");
+      setIsOpenEditPopup(false);
+    }
+  };
+
+  const handleEnterEdit = (event) => {
+    if (event.key === "Enter") {
+      toggleEditValue();
+    }
+  };
+
   return (
     <>
       <section className="containerFilters">
@@ -147,7 +209,7 @@ function Favorite() {
                 alt={`Favorite Image ${image.id}`}
                 onClick={() => togglePopup(image)}
               />
-              <section className="iconsSvg">
+              <section className="iconsSvgFav">
                 <img
                   src={downloadSvg}
                   className="download"
@@ -181,11 +243,27 @@ function Favorite() {
               <div className="popup__dates">
                 {isOpenEditPopup && (
                   <section className="editPopup">
+                    <p
+                      className="editPopup__close"
+                      onClick={() => toggleCloseEdit()}
+                    >
+                      close
+                    </p>
+
                     <input
+                      onKeyDown={handleEnterEdit}
+                      onChange={handleEditInput}
+                      value={editValue}
                       type="text"
                       className="editPopup__input"
                       placeholder="Edit a new description"
                     />
+                    <button
+                      className="editPopup__input editPopup__input__button"
+                      onClick={toggleEditValue}
+                    >
+                      ok
+                    </button>
                   </section>
                 )}
 
@@ -194,14 +272,12 @@ function Favorite() {
                   <p className="popup__dates__p"> {imgPopup.alt_description}</p>
                 </div>
                 <div></div>
-                <div className="popup__dates__edit">
-                  <img
-                    src={editSvg}
-                    className="edit"
-                    alt="edit Svg"
-                    onClick={() => toggleEdit()}
-                  />
-                </div>
+                <img
+                  src={editSvg}
+                  className="edit"
+                  alt="edit Svg"
+                  onClick={() => toggleEdit()}
+                />
                 <p className="popup__dates__p">
                   WIDTH:&nbsp;&nbsp;{imgPopup.width}
                 </p>
@@ -219,6 +295,7 @@ function Favorite() {
           </section>
         )}
       </section>
+      <ToastContainer />
     </>
   );
 }

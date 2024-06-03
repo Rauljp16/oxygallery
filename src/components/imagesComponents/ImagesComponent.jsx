@@ -7,6 +7,8 @@ import heartFavSvg from "../../svg/heartFav.svg";
 import downloadSvg from "../../svg/download.svg";
 import close from "../../svg/close.svg";
 import FileSaver from "file-saver";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ImagesComponent() {
   const [loading, setLoading] = useState(true);
@@ -87,8 +89,18 @@ function ImagesComponent() {
   };
   const downloadImg = (image) => {
     FileSaver.saveAs(image.urls.full, "Image.jpg");
+    toast.success("imagen descargada!", {
+      position: "top-center",
+      autoClose: 2001,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      icon: false,
+    });
   };
-
   return (
     <>
       {loading ? (
@@ -148,6 +160,7 @@ function ImagesComponent() {
           )}
         </section>
       )}
+      <ToastContainer />
     </>
   );
 }

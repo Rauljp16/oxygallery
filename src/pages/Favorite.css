@@ -14,16 +14,13 @@
 }
 
 .favoriteImages {
+  columns: 1;
   margin: 0 auto;
-  max-width: 50em;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 0.3em;
-  justify-content: center;
-  min-height: 100vh;
 }
 .alert {
+  position: absolute;
+  left: 25%;
+  right: 25%;
   color: rgba(243, 243, 243, 1);
   font-family: "Margarine", sans-serif;
   font-size: x-large;
@@ -31,9 +28,10 @@
   text-shadow: 0.5px 0.5px 2px rgb(3, 85, 82), -0.5px -0.5px 2px rgba(3, 85, 82),
     -0.5px 0.5px 2px rgba(3, 85, 82), 0.5px -0.5px 2px rgba(3, 85, 82);
 }
-.iconsSvg {
-  position: relative;
-  bottom: 3em;
+.iconsSvgFav {
+  position: absolute;
+  bottom: 0.5em;
+  width: 100%;
   height: 2.5em;
   display: flex;
   justify-content: center;
@@ -41,9 +39,6 @@
 .download {
   height: 100%;
 }
-/* .edit {
-  height: 100%;
-} */
 .delete {
   height: 100%;
 }
@@ -73,6 +68,7 @@
   display: flex;
   justify-content: center;
   top: 0;
+  left: 0;
   width: 100vw;
   height: 100%;
   background: rgba(255, 255, 255, 0.021);
@@ -109,34 +105,26 @@
   border-radius: 0 0 1em 1em;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 1em;
-  padding: 1em 1.2em;
+  margin: 0 1.2em;
+  padding: 1em 1.3em;
+  font-size: 0.8em;
 }
 .popup__dates__p {
   color: aliceblue;
   font-family: sans-serif;
-  font-size: small;
   margin: 0.4em 0;
 }
 .popup__dates__description {
   width: 200%;
-  margin-bottom: 1em;
-}
-.popup__dates__edit {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
-  display: flex;
-  align-items: center;
-  gap: 0.3em;
+  margin-bottom: 0.6em;
 }
 .editPopup {
   position: absolute;
   display: flex;
   top: -60%;
-  width: 70%;
+  width: 60%;
   height: 40%;
-  left: 15%;
+  left: 16%;
   background: rgba(255, 255, 255, 0.121);
   backdrop-filter: blur(1em);
   border-radius: 0.4em;
@@ -148,13 +136,62 @@
   background-color: rgba(33, 33, 33, 0.6);
   border: 1px solid #f0f8ff12;
   border-radius: 0.4em;
-  color: aliceblue;
-  width: 70%;
+  color: rgb(255, 255, 255);
+  width: 65%;
   height: 2em;
+  font-size: 0.9em;
 }
-
+.editPopup__input__button {
+  width: 18%;
+  height: 2.35em;
+  margin-left: 0.8em;
+  cursor: pointer;
+}
+.edit {
+  position: absolute;
+  top: 0.6em;
+  right: 1em;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+.editPopup__close {
+  position: absolute;
+  color: rgb(253, 59, 59);
+  top: -1.4em;
+  cursor: pointer;
+  margin: 0;
+  right: 0;
+  font-size: 0.9em;
+  letter-spacing: 2px;
+  font-family: system-ui;
+  text-shadow: 0.5px 0.5px 0px rgba(3, 36, 31, 0.507),
+    -0.5px -0.5px 0px rgba(3, 36, 31, 0.507),
+    -0.5px 0.5px 0px rgba(3, 36, 31, 0.493),
+    0.5px -0.5px 0px rgba(3, 36, 31, 0.452);
+}
+@media (min-width: 490px) {
+  .favoriteImages {
+    columns: 2;
+    max-width: 90%;
+  }
+}
+@media (min-width: 790px) {
+  .favoriteImages {
+    columns: 3;
+    max-width: 90%;
+  }
+}
 @media (min-width: 1000px) {
   .favoriteImages {
-    max-width: 70em;
+    columns: 4;
+    max-width: 80%;
+  }
+}
+@media (min-width: 1300px) {
+  .favoriteImages {
+    columns: 5;
+    width: 90%;
+    max-width: 85em;
   }
 }

@@ -29,8 +29,8 @@
   border: none;
   outline: none;
   color: rgba(243, 243, 243, 1);
-  font-size: medium;
   width: 70%;
+  font-size: 0.8em;
 }
 .searchInput:focus {
   box-shadow: 0 0 7px rgba(243, 243, 243, 1);
@@ -41,6 +41,6 @@
   margin: 0.7em 0;
   color: rgba(245, 95, 95, 0.425);
   font-family: sans-serif;
-  font-size: initial;
   cursor: pointer;
+  font-size: 0.8em;
 }
