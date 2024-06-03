@@ -56,6 +56,11 @@ function Favorite() {
     });
   };
 
+  const parseDate = (dateString) => {
+    const [day, month, year] = dateString.split("/").map(Number);
+    return new Date(year, month - 1, day);
+  };
+
   const orderBy = () => {
     let imagesCopy = [...favoriteImages];
     switch (orderValue) {
@@ -67,6 +72,9 @@ function Favorite() {
         break;
       case "likes":
         imagesCopy.sort((a, b) => b.likes - a.likes);
+        break;
+      case "date":
+        imagesCopy.sort((a, b) => parseDate(b.addedAt) - parseDate(a.addedAt));
         break;
       default:
         imagesCopy = JSON.parse(localStorage.getItem("favoriteImages")) || [];

@@ -25,6 +25,7 @@ function Order() {
         <option value="width">width</option>
         <option value="height">height</option>
         <option value="likes">likes</option>
+        <option value="date">date</option>
       </select>
     </div>
   );
