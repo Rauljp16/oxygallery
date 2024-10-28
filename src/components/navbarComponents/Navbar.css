@@ -10,7 +10,7 @@
 }
 
 a {
-  text-decoration: underline;
+  text-decoration: none;
   color: inherit;
   font-size: 1em;
 }
@@ -20,8 +20,9 @@ a {
   display: none;
 }
 .shortLogo {
+  position: relative;
   margin: 0;
-  font-size: 2.5em;
+  font-size: 2em;
   font-weight: 600;
   color: rgba(68, 109, 97, 1);
   text-shadow: 0.5px 0.5px 0px rgba(34, 223, 195, 1),
@@ -32,8 +33,18 @@ a {
 .linkNavbar {
   display: flex;
 }
+@media (min-width: 768px) {
+  .shortLogo {
+    top: 10px;
+    font-size: 3em;
+  }
+}
 @media (min-width: 1000px) {
   .linkNavbar {
     margin-right: 2em;
+  }
+  .shortLogo {
+    top: 20px;
+    font-size: 5em;
   }
 }

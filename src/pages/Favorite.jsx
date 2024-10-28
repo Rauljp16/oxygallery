@@ -1,7 +1,6 @@
 // Favorite.jsx
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Tags from "../components/tags/Tags";
 import "./Favorite.css";
 import downloadSvg from "../svg/download.svg";
 import deleteSvg from "../svg/delete.svg";
@@ -206,7 +205,6 @@ function Favorite() {
         </div>
         <Order />
       </section>
-      <Tags />
       <section className="favoriteImages">
         {favoriteImages.length === 0 ? (
           <p className="alert">AÑADE IMAGENES A FAVORITOS</p>
@@ -259,13 +257,6 @@ function Favorite() {
               <div className="popup__dates">
                 {isOpenEditPopup && (
                   <section className="editPopup">
-                    <p
-                      className="editPopup__close"
-                      onClick={() => toggleCloseEdit()}
-                    >
-                      close
-                    </p>
-
                     <input
                       onKeyDown={handleEnterEdit}
                       onChange={handleEditInput}
@@ -280,6 +271,12 @@ function Favorite() {
                     >
                       ok
                     </button>
+                    <p
+                      className="editPopup__close"
+                      onClick={() => toggleCloseEdit()}
+                    >
+                      close
+                    </p>
                   </section>
                 )}
 

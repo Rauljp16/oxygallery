@@ -1,31 +1,31 @@
 .search {
   display: flex;
   height: 2.6em;
-  border-radius: 1em;
+  /* border-radius: 1em; */
   max-width: 30em;
   justify-content: space-between;
 }
 .containerSearch {
   position: relative;
   background-color: #ffffff35;
-  border-radius: 1em;
+  border-radius: 0.5em;
   padding: 0.7em;
-  margin: 0 auto;
+  margin: 0 auto 30px;
   max-width: 30em;
 }
 .containerButton {
   display: flex;
   background-color: rgb(33, 33, 33);
-  border-radius: 1em;
+  border-radius: 0.5em;
 }
 .searchButton {
-  width: 2em;
+  width: 1.5em;
   cursor: pointer;
   padding: 0 0.6em;
 }
 .searchInput {
   background-color: rgb(33, 33, 33);
-  border-radius: 1em;
+  border-radius: 0.5em;
   border: none;
   outline: none;
   color: rgba(243, 243, 243, 1);
@@ -38,7 +38,6 @@
 .deleteInput {
   position: absolute;
   right: 33%;
-  margin: 0.7em 0;
   color: rgba(245, 95, 95, 0.425);
   font-family: sans-serif;
   cursor: pointer;
